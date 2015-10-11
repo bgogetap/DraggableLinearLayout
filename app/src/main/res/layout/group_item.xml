@@ -48,7 +48,7 @@
             android:text="Item Content"/>
     </LinearLayout>
 
-    <LinearLayout
+    <com.cultureoftech.draggablelinearlayout.DragLinearLayout
         android:id="@+id/child_container"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

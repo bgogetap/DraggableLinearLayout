@@ -14,7 +14,7 @@ import butterknife.ButterKnife;
  */
 public class GroupItemView extends LinearLayout {
 
-    @Bind(R.id.child_container) LinearLayout childContainer;
+    @Bind(R.id.child_container) DragLinearLayout childContainer;
     @Bind(R.id.group_title) TextView groupTitle;
     @Bind(R.id.group_total) TextView groupTotal;
     @Bind(R.id.drag_handle) View dragHandle;
@@ -42,10 +42,9 @@ public class GroupItemView extends LinearLayout {
             childContainer.addView(estimateView);
         }
 
-//        for (int i = 0; i < childContainer.getChildCount(); i++) {
-//            childContainer.setViewDraggable(childContainer.getChildAt(i), ((EstimateItemView)childContainer.getChildAt(i)).dragHandle);
-//            childContainer.setDragBetweenParents(true);
-//        }
+        for (int i = 0; i < childContainer.getChildCount(); i++) {
+            childContainer.setViewDraggable(childContainer.getChildAt(i), ((EstimateItemView)childContainer.getChildAt(i)).dragHandle);
+        }
     }
 
 
