@@ -31,5 +31,6 @@ public class EstimateItemView extends LinearLayout {
         this.estimate = estimate;
         title.setText(estimate.getTitle());
         content.setText(estimate.getContent());
+        dragHandle.setOnTouchListener(new MyTouchListener(this));
     }
 }

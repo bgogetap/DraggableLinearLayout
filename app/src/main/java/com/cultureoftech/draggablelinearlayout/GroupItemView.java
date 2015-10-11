@@ -41,10 +41,11 @@ public class GroupItemView extends LinearLayout {
             estimateView.setEstimate(estimate);
             childContainer.addView(estimateView);
         }
+        childContainer.setOnDragListener(new MyDragListener(getContext()));
 
-        for (int i = 0; i < childContainer.getChildCount(); i++) {
-            childContainer.setViewDraggable(childContainer.getChildAt(i), ((EstimateItemView)childContainer.getChildAt(i)).dragHandle);
-        }
+//        for (int i = 0; i < childContainer.getChildCount(); i++) {
+//            childContainer.setViewDraggable(childContainer.getChildAt(i), ((EstimateItemView)childContainer.getChildAt(i)).dragHandle);
+//        }
     }
 
 

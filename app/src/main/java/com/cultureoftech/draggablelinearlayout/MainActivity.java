@@ -50,11 +50,11 @@ public class MainActivity extends AppCompatActivity {
             groupItemView.setGroupItem(groupItems.get(i));
             groupContainer.addView(groupItemView);
         }
-        for (int i = 0; i < groupContainer.getChildCount(); i++) {
-            GroupItemView child = (GroupItemView) groupContainer.getChildAt(i);
-            groupContainer.setViewDraggable(child, child.dragHandle);
-        }
-        groupContainer.setContainerScrollView(scrollView);
+//        for (int i = 0; i < groupContainer.getChildCount(); i++) {
+//            GroupItemView child = (GroupItemView) groupContainer.getChildAt(i);
+//            groupContainer.setViewDraggable(child, child.dragHandle);
+//        }
+//        groupContainer.setContainerScrollView(scrollView);
     }
 
     @Override

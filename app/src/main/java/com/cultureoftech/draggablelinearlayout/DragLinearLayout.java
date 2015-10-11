@@ -22,6 +22,7 @@ import android.util.SparseArray;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewConfiguration;
+import android.view.ViewGroup;
 import android.view.ViewTreeObserver;
 import android.widget.LinearLayout;
 import android.widget.ScrollView;
@@ -427,6 +428,9 @@ public class DragLinearLayout extends LinearLayout {
      * Evaluates and executes draggable view swaps.
      */
     private void onDrag(final int offset) {
+        if (draggedItem.view == null) {
+            return;
+        }
         draggedItem.setTotalOffset(offset);
         invalidate();
 
@@ -439,6 +443,25 @@ public class DragLinearLayout extends LinearLayout {
 
         View belowView = getChildAt(belowPosition);
         View aboveView = getChildAt(abovePosition);
+        ViewGroup immediateGroup = (ViewGroup) draggedItem.view.getParent().getParent();
+        int immediateGroupParentPosition = ((ViewGroup)draggedItem.view.getParent().getParent().getParent()).indexOfChild(immediateGroup);
+
+
+        if (aboveView == null) {
+            ViewGroup estimateItemParentGroup = (ViewGroup) draggedItem.view.getParent().getParent();
+            ViewGroup upperDLL = (ViewGroup) estimateItemParentGroup.getParent();
+            int startGroupPosition = upperDLL.indexOfChild(estimateItemParentGroup);
+            Log.d("DLL", "Start group index: " + startGroupPosition);
+            if (draggedItem.view.getParent() != null) {
+                ((ViewGroup)draggedItem.view.getParent()).removeView(draggedItem.view);
+            }
+            ViewGroup upperGroup = (ViewGroup) upperDLL.getChildAt(0);
+            ViewGroup upperGroupDLL = (ViewGroup) upperGroup.getChildAt(2);
+            upperGroupDLL.addView(draggedItem.view);
+            draggedItem.stopDetecting();
+            onTouchEnd();
+            return;
+        }
 
         final boolean isBelow = (belowView != null) &&
                 (currentTop + draggedItem.height > belowView.getTop() + belowView.getHeight() / 2);
