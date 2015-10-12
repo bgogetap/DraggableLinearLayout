@@ -1,6 +1,8 @@
 package com.cultureoftech.draggablelinearlayout;
 
 import android.content.ClipData;
+import android.graphics.Bitmap;
+import android.graphics.Canvas;
 import android.view.MotionEvent;
 import android.view.View;
 
@@ -19,6 +21,9 @@ public class MyTouchListener implements View.OnTouchListener {
     public boolean onTouch(View v, MotionEvent event) {
         if (event.getAction() == MotionEvent.ACTION_DOWN) {
             ClipData data = ClipData.newPlainText("", "");
+            Bitmap bitmap = Bitmap.createBitmap(itemView.getWidth(), itemView.getHeight(), Bitmap.Config.ARGB_8888);
+            Canvas canvas = new Canvas(bitmap);
+            itemView.draw(canvas);
             View.DragShadowBuilder shadowBuilder = new View.DragShadowBuilder(itemView);
             itemView.startDrag(data, shadowBuilder, itemView, 0);
             itemView.setVisibility(View.INVISIBLE);

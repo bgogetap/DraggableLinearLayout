@@ -14,7 +14,7 @@ import butterknife.ButterKnife;
  */
 public class GroupItemView extends LinearLayout {
 
-    @Bind(R.id.child_container) DragLinearLayout childContainer;
+    @Bind(R.id.child_container) LinearLayout childContainer;
     @Bind(R.id.group_title) TextView groupTitle;
     @Bind(R.id.group_total) TextView groupTotal;
     @Bind(R.id.drag_handle) View dragHandle;
